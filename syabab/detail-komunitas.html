@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Komunitas - Syabab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .detail-page { background: #f8fafc; min-height: 100vh; padding-bottom: 80px; }
+        .hero-banner {
+            background-color: var(--navy);
+            color: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><path d="M50 50 L150 150 M150 50 L50 150" stroke="rgba(255,255,255,0.05)" stroke-width="20"/></svg>');
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .hero-banner .badge {
+            background: #e0f2fe; color: #0284c7; padding: 6px 16px; border-radius: 99px;
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .hero-banner h1 { font-size: 2.2rem; margin-bottom: 16px; }
+        .hero-info { display: flex; gap: 24px; font-size: 0.9rem; color: #cbd5e1; }
+        .hero-info span { display: flex; align-items: center; gap: 8px; }
+        
+        .detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+        
+        .content-card {
+            background: white; border: 1px solid var(--border); border-radius: 20px;
+            padding: 30px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .content-card h3 { font-size: 1.25rem; margin-bottom: 16px; color: var(--navy); border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
+        .content-card p { color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+        .content-card ul { padding-left: 20px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+        .content-card li { margin-bottom: 8px; }
+        
+        .sidebar-card {
+            background: white; border: 1px solid var(--border); border-radius: 20px;
+            padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .sidebar-card h4 { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; }
+        .sidebar-card h4 i { color: var(--primary); }
+        .sidebar-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+        .btn-full { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        
+        @media (max-width: 900px) {
+            .detail-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="detail-page">
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Syabab</a>
+            <nav class="nav-links">
+                <a href="index.html">Program</a>
+                <a href="kegiatan.html">Kegiatan</a>
+                <a href="tentang-kami.html">Tentang Kami</a>
+            </nav>
+            <div id="nav-auth-container">
+            <div class="dropdown">
+                <a href="#" class="btn btn-primary dropbtn">Masuk / Daftar <i class="fa-solid fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="login.html">Login</a>
+                    <a href="#" id="btn-daftar-modal">Daftar</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="hero-banner" id="heroBanner">
+            <div class="badge"><i class="fa-solid fa-users"></i> Komunitas</div>
+            <h1 id="namaKomunitas">Memuat Komunitas...</h1>
+            <div class="hero-info">
+                <span><i class="fa-regular fa-clock"></i> <span id="tglPendirian">Memuat...</span></span>
+                <span><i class="fa-solid fa-location-dot"></i> <span id="lokasiKomunitas">Memuat...</span></span>
+            </div>
+        </div>
+
+        <div class="detail-grid">
+            <div class="left-col">
+                <div class="content-card">
+                    <h3>Deskripsi</h3>
+                    <p id="deskripsiKomunitas">Memuat deskripsi komunitas...</p>
+                </div>
+                
+                <div class="content-card">
+                    <h3>Detail Aktivitas & Fokus</h3>
+                    <ul id="fokusList">
+                        <li>Fokus Utama: <span id="fokusUtama" style="font-weight: 600;">-</span></li>
+                        <li>Fokus Tambahan: <span id="fokusTambahan" style="font-weight: 600;">-</span></li>
+                        <li>Total Anggota: <span id="totalAnggota" style="font-weight: 600;">0</span></li>
+                        <li>Total Kegiatan: <span id="totalKegiatan" style="font-weight: 600;">0</span></li>
+                    </ul>
+                    <p>Komunitas ini bergerak dalam bidang <span id="tipeKomunitas"></span> yang aktif mengadakan kegiatan positif bagi pemuda dan masyarakat sekitar.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>Alamat Lengkap</h3>
+                    <p id="alamatLengkap">Memuat alamat lengkap...</p>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="sidebar-card">
+                    <h4><i class="fa-solid fa-user-plus"></i> Gabung Sekarang</h4>
+                    <p>Tertarik untuk bergabung? Isi formulir pendaftaran secara langsung atau hubungi admin untuk informasi lebih lanjut.</p>
+                    <a href="#" id="btn-gabung" class="btn btn-primary btn-full"><i class="fa-solid fa-clipboard-list"></i> Daftar</a>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4><i class="fa-solid fa-headset"></i> Pusat Bantuan</h4>
+                    <p>Punya pertanyaan seputar pendaftaran atau butuh panduan lebih lanjut? Silakan hubungi admin kami.</p>
+                    <a href="#" id="btnWa" class="btn btn-outline btn-full" style="border-color: #25D366; color: #25D366;" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
+                    </a>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4><i class="fa-solid fa-globe"></i> Informasi Kontak</h4>
+                    <p style="margin-bottom: 8px;"><strong>Email Admin:</strong> <br><span id="emailAdmin">-</span></p>
+                    <p style="margin-bottom: 8px;"><strong>Website:</strong> <br><span id="websiteUrl">-</span></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Daftar</h2>
+                <p>Ayo bergabung dengan Syabab sebagai komunitas atau sebagai anggota.</p>
+            </div>
+            <div class="modal-body">
+                <div class="register-options">
+                    <a href="daftar-komunitas.html" class="register-card">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Daftar sebagai Komunitas</span>
+                    </a>
+                    <a href="daftar.html" class="register-card">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Daftar sebagai Anggota</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gabung Komunitas Modal -->
+    <div id="gabungKomunitasModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px; padding: 24px;">
+            <span class="close-modal" id="closeGabungModal">&times;</span>
+            <div class="modal-header" style="margin-bottom: 20px;">
+                <h2 style="font-size: 1.5rem;"><i class="fa-solid fa-clipboard-user"></i> Formulir Pendaftaran</h2>
+                <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted);">Silakan lengkapi data berikut untuk bergabung dengan komunitas ini.</p>
+            </div>
+            <div class="modal-body">
+                <form id="gabungKomunitasForm">
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="reg_whatsapp" style="margin-bottom: 6px; display: block; font-weight: 500;">Nomor WhatsApp</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-brands fa-whatsapp input-icon"></i>
+                            <input type="tel" id="reg_whatsapp" class="form-control" placeholder="Contoh: 081234567890" required style="padding-left: 40px;">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="reg_alamat" style="margin-bottom: 6px; display: block; font-weight: 500;">Alamat Domisili</label>
+                        <textarea id="reg_alamat" class="form-control" rows="2" placeholder="Masukkan alamat domisili lengkap..." required></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="reg_keahlian" style="margin-bottom: 6px; display: block; font-weight: 500;">Keahlian / Minat</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-star input-icon"></i>
+                            <input type="text" id="reg_keahlian" class="form-control" placeholder="Contoh: Desain Grafis, Public Speaking" required style="padding-left: 40px;">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label for="reg_motivasi" style="margin-bottom: 6px; display: block; font-weight: 500;">Motivasi Bergabung</label>
+                        <textarea id="reg_motivasi" class="form-control" rows="3" placeholder="Ceritakan motivasi Anda bergabung dengan komunitas ini..." required></textarea>
+                    </div>
+                    <div style="display:flex; gap:12px;">
+                        <button type="button" id="cancelGabungBtn" class="btn btn-outline" style="flex:1;">Batal</button>
+                        <button type="submit" id="submitGabungBtn" class="btn btn-primary" style="flex:1;">Kirim Pendaftaran</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo text-white">Syabab</a>
+                <p>Kumpulin pemuda buat bikin masjid lebih hidup.</p>
+            </div>
+            <div class="footer-links-wrapper">
+                <div class="footer-nav">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Bantuan</a>
+                    <a href="#">Hubungi Kami</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2024 Syabab. Menuju Generasi Rabbani.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            if (!id) {
+                alert('ID Komunitas tidak ditemukan!');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/komunitas/${id}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('namaKomunitas').textContent = data.nama_komunitas;
+                    
+                    const tgl = new Date(data.tanggal_pendirian);
+                    document.getElementById('tglPendirian').textContent = isNaN(tgl) ? data.tanggal_pendirian : tgl.toLocaleDateString('id-ID');
+                    
+                    document.getElementById('lokasiKomunitas').textContent = `${data.kota_kabupaten}, ${data.provinsi}`;
+                    document.getElementById('deskripsiKomunitas').textContent = data.deskripsi;
+                    
+                    document.getElementById('fokusUtama').textContent = data.fokus_utama || '-';
+                    document.getElementById('fokusTambahan').textContent = data.fokus_tambahan || '-';
+                    document.getElementById('totalAnggota').textContent = data.total_anggota || '0';
+                    document.getElementById('totalKegiatan').textContent = data.total_kegiatan || '0';
+                    document.getElementById('tipeKomunitas').textContent = data.tipe_komunitas;
+                    
+                    document.getElementById('alamatLengkap').innerHTML = `${data.alamat}<br>${data.kota_kabupaten}, ${data.provinsi} ${data.kode_pos || ''}`;
+                    
+                    document.getElementById('emailAdmin').textContent = data.email || '-';
+                    document.getElementById('websiteUrl').innerHTML = data.website ? `<a href="${data.website}" target="_blank" style="color: var(--primary)">Kunjungi Website</a>` : '-';
+                    
+                    if (data.no_telepon_komunitas || data.no_telepon_admin) {
+                        let phone = data.no_telepon_komunitas || data.no_telepon_admin;
+                        // format to wa.me (replace 08 with 628)
+                        if (phone.startsWith('08')) phone = '62' + phone.substring(1);
+                        document.getElementById('btnWa').href = `https://wa.me/${phone}`;
+                    }
+                } else {
+                    alert('Komunitas tidak ditemukan');
+                    window.location.href = 'index.html';
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Gagal mengambil data dari server. Pastikan backend berjalan.');
+            }
+        });
+
+        // Register Modal Logic
+        const modal = document.getElementById("registerModal");
+        const btnDaftar = document.getElementById("btn-daftar-modal");
+        const spanClose = document.getElementsByClassName("close-modal")[0];
+
+        if (btnDaftar) {
+            btnDaftar.onclick = function(e) {
+                e.preventDefault();
+                modal.style.display = "flex";
+            }
+        }
+
+        if (spanClose) {
+            spanClose.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (event.target == gabungModal) {
+                gabungModal.style.display = "none";
+            }
+        }
+
+        // Gabung Komunitas Modal Logic
+        const btnGabung = document.getElementById("btn-gabung");
+        const gabungModal = document.getElementById("gabungKomunitasModal");
+        const closeGabungModal = document.getElementById("closeGabungModal");
+        const cancelGabungBtn = document.getElementById("cancelGabungBtn");
+        const gabungForm = document.getElementById("gabungKomunitasForm");
+
+        if (btnGabung) {
+            btnGabung.onclick = function(e) {
+                e.preventDefault();
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert("Anda harus login terlebih dahulu.");
+                    window.location.href = "login.html";
+                    return;
+                }
+                gabungModal.style.display = "flex";
+            }
+        }
+
+        if (closeGabungModal) closeGabungModal.onclick = () => gabungModal.style.display = "none";
+        if (cancelGabungBtn) cancelGabungBtn.onclick = () => gabungModal.style.display = "none";
+
+        if (gabungForm) {
+            gabungForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const token = localStorage.getItem('token');
+                
+                const formData = {
+                    komunitas_id: urlParams.get('id'),
+                    no_whatsapp: document.getElementById('reg_whatsapp').value,
+                    alamat_domisili: document.getElementById('reg_alamat').value,
+                    keahlian: document.getElementById('reg_keahlian').value,
+                    motivasi: document.getElementById('reg_motivasi').value
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/komunitas/join', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        alert(result.message);
+                        gabungModal.style.display = "none";
+                        gabungForm.reset();
+                    } else {
+                        alert(result.error || "Gagal mendaftar");
+                    }
+                } catch (error) {
+                    console.error("Join Error:", error);
+                    alert("Terjadi kesalahan sistem");
+                }
+            });
+        }
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

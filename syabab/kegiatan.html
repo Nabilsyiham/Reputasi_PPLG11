@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kegiatan - Syabab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Syabab</a>
+            <nav class="nav-links">
+                <a href="index.html">Program</a>
+                <a href="kegiatan.html" class="active">Kegiatan</a>
+                <a href="tentang-kami.html">Tentang Kami</a>
+            </nav>
+            <div id="nav-auth-container">
+                <div class="dropdown">
+                    <a href="#" class="btn btn-primary dropbtn">Masuk / Daftar <i class="fa-solid fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <div class="dropdown-content">
+                        <a href="login.html">Login</a>
+                        <a href="#" id="btn-daftar-modal">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-kegiatan">
+        <section class="kegiatan-header">
+            <div class="container">
+                <div class="kegiatan-top">
+                    <div class="kegiatan-title">
+                        <h1>Cari Kegiatan</h1>
+                        <p>Cari kegiatan seru buat nambah teman dan ilmu.</p>
+                    </div>
+                    <div class="kegiatan-actions">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="searchInput" placeholder="Cari nama kegiatan...">
+                        </div>
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="">Semua Kategori</option>
+                            <option value="Sosial">Sosial</option>
+                            <option value="Pendidikan">Pendidikan</option>
+                            <option value="Keagamaan">Keagamaan</option>
+                            <option value="Lingkungan">Lingkungan</option>
+                        </select>
+                        <button class="btn-icon" type="button">
+                            <i class="fa-solid fa-filter"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="kegiatan-list">
+            <div class="container">
+                <div class="grid kegiatan-grid" id="kegiatanListContainer">
+                    <div class="loading-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Memuat kegiatan...
+                    </div>
+                </div>
+
+                <div id="noResults" class="no-results" style="display:none;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h3>Kegiatan tidak ditemukan</h3>
+                    <p>Coba ubah kata kunci atau pilih kategori lain.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo text-white">Syabab</a>
+                <p>Kumpulin pemuda buat bikin masjid lebih hidup.</p>
+            </div>
+            <div class="footer-links-wrapper">
+                <div class="footer-nav">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Bantuan</a>
+                    <a href="#">Hubungi Kami</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2024 Syabab. Menuju Generasi Rabbani.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Daftar</h2>
+                <p>Ayo bergabung dengan Syabab sebagai komunitas atau sebagai anggota.</p>
+            </div>
+            <div class="modal-body">
+                <div class="register-options">
+                    <a href="daftar-komunitas.html" class="register-card">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Daftar sebagai Komunitas</span>
+                    </a>
+                    <a href="daftar.html" class="register-card">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Daftar sebagai Anggota</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('registerModal');
+        const btnDaftar = document.getElementById('btn-daftar-modal');
+        const spanClose = document.querySelector('.close-modal');
+
+        if (btnDaftar) {
+            btnDaftar.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'flex';
+            });
+        }
+
+        if (spanClose) {
+            spanClose.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const kegiatanGrid = document.getElementById('kegiatanListContainer');
+        const noResults = document.getElementById('noResults');
+        const API_BASE = window.location.port === '3000' ? '' : 'http://localhost:3000';
+
+        let kegiatanData = [];
+
+        async function fetchKegiatan() {
+            try {
+                const res = await fetch(`${API_BASE}/api/kegiatan`);
+                const data = await res.json();
+                kegiatanData = data;
+                renderKegiatan(kegiatanData);
+            } catch (err) {
+                console.error("Gagal mengambil kegiatan:", err);
+                kegiatanGrid.innerHTML = '<div class="loading-state" style="color:red;">Gagal memuat data dari server.</div>';
+            }
+        }
+
+        function renderKegiatan(list) {
+            if (list.length === 0) {
+                kegiatanGrid.innerHTML = '';
+                kegiatanGrid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            kegiatanGrid.style.display = '';
+            noResults.style.display = 'none';
+
+            kegiatanGrid.innerHTML = list.map(k => {
+                const dateObj = new Date(k.tanggal);
+                const formattedDate = dateObj.toLocaleString('id-ID', { dateStyle: 'medium' });
+                const kategori = k.fokus_utama || 'Umum';
+
+                // Image handling — no badge inside image, just the image itself
+                let imgHtml = '';
+                if (k.gambar_card) {
+                    imgHtml = `<img src="${API_BASE}/uploads/${k.gambar_card}" alt="${k.judul}">`;
+                } else if (k.gambar) {
+                    imgHtml = `<img src="${API_BASE}/uploads/${k.gambar}" alt="${k.judul}">`;
+                } else {
+                    imgHtml = `<i class="fa-solid fa-users k-center-icon icon-blue"></i>`;
+                }
+
+                return `
+                    <div class="kegiatan-card" data-category="${kategori}" onclick="window.location.href='detail-kegiatan.html?id=${k.id}'">
+                        <div class="k-img-box bg-light-blue">
+                            ${imgHtml}
+                        </div>
+                        <div class="k-content">
+                            <div>
+                                <span class="k-badge badge-blue"><i class="fa-solid fa-location-dot" style="margin-right:3px;font-size:0.65rem;"></i>${kategori}</span>
+                            </div>
+                            <h3>${k.judul}</h3>
+                            <p class="k-desc">${k.deskripsi}</p>
+                            <div class="k-info">
+                                <span><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
+                                <span><i class="fa-solid fa-location-dot"></i> ${k.lokasi}</span>
+                            </div>
+                            <div class="k-btn">
+                                <button type="button">Lihat Detail</button>
+                            </div>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
+        function filterKegiatan() {
+            const query = searchInput.value.trim().toLowerCase();
+            const selectedCategory = categoryFilter.value;
+
+            const filtered = kegiatanData.filter(k => {
+                const kategori = k.fokus_utama || 'Umum';
+                const matchesSearch = k.judul.toLowerCase().includes(query) || k.deskripsi.toLowerCase().includes(query);
+                const matchesCategory = !selectedCategory || kategori === selectedCategory;
+                return matchesSearch && matchesCategory;
+            });
+
+            renderKegiatan(filtered);
+        }
+
+        searchInput.addEventListener('input', filterKegiatan);
+        categoryFilter.addEventListener('change', filterKegiatan);
+
+        fetchKegiatan();
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

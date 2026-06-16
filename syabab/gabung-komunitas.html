@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabung Komunitas - Syabab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+        <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Syabab</a>
+            <nav class="nav-links">
+                <a href="index.html">Program</a>
+                <a href="kegiatan.html">Kegiatan</a>
+                <a href="tentang-kami.html">Tentang Kami</a>
+            </nav>
+            <div id="nav-auth-container">
+            <div class="dropdown">
+                <a href="#" class="btn btn-primary dropbtn">Masuk / Daftar <i class="fa-solid fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="login.html">Login</a>
+                    <a href="#" id="btn-daftar-modal">Daftar</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-detail">
+        <div class="container">
+            <!-- Hero Banner (Like Image 3) -->
+            <div class="detail-hero bg-dark-blue">
+                <span class="d-badge text-blue" style="background-color: #e0f2fe;"><i class="fa-solid fa-user-group"></i> Rekrutmen</span>
+                <h1 id="k_nama">Bergabung Bersama Komunitas Kami</h1>
+                <div class="d-hero-meta">
+                    <span><i class="fa-regular fa-clock"></i> Pendaftaran Terbuka</span>
+                    <span id="k_lokasi"><i class="fa-solid fa-location-dot"></i> Seluruh Wilayah</span>
+                </div>
+                <i class="fa-solid fa-handshake hero-bg-icon"></i>
+            </div>
+
+            <!-- Content Layout -->
+            <div class="detail-layout">
+                <!-- Left: Main Content (Detail Sections) -->
+                <div class="detail-main">
+                    <!-- Deskripsi -->
+                    <div class="detail-card" style="margin-bottom: 1.5rem; padding: 2rem;">
+                        <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Deskripsi</h2>
+                        <p id="k_deskripsi" style="color: var(--text-main); font-size: 0.95rem;">Memuat deskripsi komunitas...</p>
+                        <div class="text-center" style="margin-top: 1.5rem;">
+                            <a href="#" style="font-size: 0.9rem; font-weight: 500; color: var(--text-main);">Baca selengkapnya</a>
+                        </div>
+                    </div>
+
+                    <!-- Detail Aktivitas -->
+                    <div class="detail-card" style="margin-bottom: 1.5rem; padding: 2rem;">
+                        <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Detail Aktivitas</h2>
+                        <ul style="padding-left: 1.5rem; color: var(--text-main); font-size: 0.95rem; margin-bottom: 0;">
+                            <li id="k_aktivitas" style="margin-bottom: 0;"><span style="color: var(--text-muted);">Metode briefing:</span> Memuat aktivitas...</li>
+                        </ul>
+                    </div>
+
+                    <!-- Informasi Komunitas -->
+                    <div class="detail-card" style="padding: 2rem; background-color: #f8fafc; border: none;">
+                        <h2 style="font-size: 1.25rem; margin-bottom: 1.5rem;">Detail Komunitas</h2>
+                        
+                        <div style="background-color: var(--white); border-radius: 12px; padding: 1.5rem; border: 1px solid #e2e8f0;">
+                            <h3 id="k_tipe_title" style="font-size: 1.05rem; margin-bottom: 0.75rem;">-</h3>
+                            <div style="display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-wrap: wrap;">
+                                <span id="k_tgl_berdiri"><i class="fa-regular fa-calendar"></i> Berdiri: -</span>
+                                <span id="k_website_display"><i class="fa-solid fa-globe"></i> -</span>
+                            </div>
+                            
+                            <hr style="border: none; border-top: 1px dashed #e2e8f0; margin-bottom: 1.5rem;">
+                            
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-main);">Fokus Utama</h4>
+                            <p id="k_fokus_utama" style="font-size: 0.9rem; margin-bottom: 1.25rem; color: var(--text-muted);">-</p>
+                            
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-main);">Fokus Tambahan</h4>
+                            <p id="k_fokus_tambahan" style="font-size: 0.9rem; margin-bottom: 1.25rem; color: var(--text-muted);">-</p>
+                            
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-main);">Domisili</h4>
+                            <p id="k_domisili_full" style="font-size: 0.9rem; margin-bottom: 1.25rem; color: var(--text-muted);">-</p>
+                            
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-main);">Alamat Lengkap</h4>
+                            <p id="k_alamat_full" style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-muted);">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Sidebar -->
+                <div class="detail-sidebar">
+                    <!-- Direct Registration Card -->
+                    <div class="sidebar-card" style="border-top: 4px solid var(--primary);">
+                        <h3 class="card-title"><i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> Gabung Sekarang</h3>
+                        <p>Tertarik untuk bergabung? Isi formulir pendaftaran secara langsung tanpa harus melalui chat.</p>
+                        <a href="form-pendaftaran.html" class="btn btn-primary w-100">
+                            <i class="fa-solid fa-file-signature"></i> Daftar Langsung
+                        </a>
+                    </div>
+
+                    <!-- WhatsApp Contact Card -->
+                    <div class="sidebar-card support-card">
+                        <h3 class="card-title"><i class="fa-solid fa-headset text-green"></i> Pusat Bantuan</h3>
+                        <p>Punya pertanyaan seputar pendaftaran atau butuh panduan lebih lanjut? Silakan hubungi kami.</p>
+                        <!-- WhatsApp Link -->
+                        <a id="k_wa" href="#" target="_blank" class="btn btn-whatsapp w-100">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chat WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Organizer Card -->
+                    <div class="sidebar-card">
+                        <h3 class="card-title">Ketua Komunitas</h3>
+                        <div class="organizer-info">
+                            <div class="org-avatar bg-dark-blue text-white" id="admin_initials">?</div>
+                            <div>
+                                <div class="org-name" id="admin_name">Memuat...</div>
+                                <div class="org-sub">Pengelola Utama</div>
+                            </div>
+                        </div>
+                        <div class="org-contact">
+                            <div class="org-contact-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span id="admin_email">...</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script src="js/gabung-komunitas.js"></script>
+    </main>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Daftar</h2>
+                <p>Ayo bergabung dengan Syabab sebagai komunitas atau sebagai anggota.</p>
+            </div>
+            <div class="modal-body">
+                <div class="register-options">
+                    <a href="daftar-komunitas.html" class="register-card">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Daftar sebagai Komunitas</span>
+                    </a>
+                    <a href="daftar.html" class="register-card">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Daftar sebagai Anggota</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo text-white">Syabab</a>
+                <p>Kumpulin pemuda buat bikin masjid lebih hidup.</p>
+            </div>
+            <div class="footer-links-wrapper">
+                <div class="footer-nav">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Bantuan</a>
+                    <a href="#">Hubungi Kami</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2024 Syabab. Menuju Generasi Rabbani.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/auth.js"></script>
+</body>
+</html>

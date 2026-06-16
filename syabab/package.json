@@ -1,0 +1,8 @@
+{
+  "name": "syabab",
+  "version": "1.0.0",
+  "description": "Syabab web project",
+  "scripts": {
+    "dev": "npx serve -p 3030"
+  }
+}

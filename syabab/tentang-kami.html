@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Syabab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Syabab</a>
+            <nav class="nav-links">
+                <a href="index.html">Program</a>
+                <a href="kegiatan.html">Kegiatan</a>
+                <a href="tentang-kami.html" class="active">Tentang Kami</a>
+            </nav>
+            <div id="nav-auth-container">
+                <div class="dropdown">
+                    <a href="#" class="btn btn-primary dropbtn">Masuk / Daftar <i class="fa-solid fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <div class="dropdown-content">
+                        <a href="login.html">Login</a>
+                        <a href="#" id="btn-daftar-modal">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-about">
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div class="container text-center">
+                <span class="badge-text">MENGENAL KAMI LEBIH DEKAT</span>
+                <h1>Tentang Kami</h1>
+                <p>Kami cuma sekelompok pemuda yang pengen masjid lebih sering diadain acara seru, bukan cuma buat tempat salat doang.</p>
+            </div>
+        </section>
+
+        <!-- Vision & Mission -->
+        <section class="vision-mission">
+            <div class="container">
+                <div class="vm-grid">
+                    <div class="vm-card bg-dark-blue text-white">
+                        <div class="vm-icon"><i class="fa-solid fa-eye text-primary"></i></div>
+                        <h2>Visi Kami</h2>
+                        <p>Pengen ngumpulin anak muda Islam buat bikin hal positif bareng-bareng di lingkungan sekitar.</p>
+                    </div>
+                    <div class="vm-card bg-white">
+                        <div class="vm-icon"><i class="fa-solid fa-bullseye text-blue"></i></div>
+                        <h2>Misi Kami</h2>
+                        <ul class="vm-list">
+                            <li><i class="fa-solid fa-check text-green"></i> Ngajakin anak muda main ke masjid.</li>
+                            <li><i class="fa-solid fa-check text-green"></i> Ngadain pelatihan sama diskusi buat nambah skill.</li>
+                            <li><i class="fa-solid fa-check text-green"></i> Bikin acara sosial, belajar bareng, sampai kajian.</li>
+                            <li><i class="fa-solid fa-check text-green"></i> Ngbangun relasi sama remaja masjid dari daerah lain.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="core-values">
+            <div class="container text-center">
+                <h2 class="section-title text-center" style="margin-top: 0">Nilai Inti Pergerakan</h2>
+                <div class="values-grid">
+                    <div class="value-item value-card">
+                        <div class="v-icon icon-yellow"><i class="fa-solid fa-handshake"></i></div>
+                        <h3>Kolaborasi</h3>
+                        <p>Kerja bareng, nggak pilih-pilih temen.</p>
+                    </div>
+                    <div class="value-item value-card">
+                        <div class="v-icon icon-blue"><i class="fa-solid fa-lightbulb"></i></div>
+                        <h3>Inovasi</h3>
+                        <p>Nyari cara baru dan manfaatin teknologi buat ngadain kegiatan.</p>
+                    </div>
+                    <div class="value-item value-card">
+                        <div class="v-icon icon-green"><i class="fa-solid fa-heart"></i></div>
+                        <h3>Integritas</h3>
+                        <p>Tetap jujur dan amanah pas ngerjain sesuatu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo text-white">Syabab</a>
+                <p>Kumpulin pemuda buat bikin masjid lebih hidup.</p>
+            </div>
+            <div class="footer-links-wrapper">
+                <div class="footer-nav">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Bantuan</a>
+                    <a href="#">Hubungi Kami</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2024 Syabab. Menuju Generasi Rabbani.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Daftar</h2>
+                <p>Ayo bergabung dengan Syabab sebagai komunitas atau sebagai anggota.</p>
+            </div>
+            <div class="modal-body">
+                <div class="register-options">
+                    <a href="daftar-komunitas.html" class="register-card">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Daftar sebagai Komunitas</span>
+                    </a>
+                    <a href="daftar.html" class="register-card">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Daftar sebagai Anggota</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // modal handlers
+        const modal = document.getElementById('registerModal');
+        const btnDaftar = document.getElementById('btn-daftar-modal');
+        const spanClose = document.querySelector('.close-modal');
+        if (btnDaftar) btnDaftar.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'flex'; });
+        if (spanClose) spanClose.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
